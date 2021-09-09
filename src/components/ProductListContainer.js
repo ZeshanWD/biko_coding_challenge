@@ -10,7 +10,7 @@ const ProductListContainer = () => {
     () => {
       setLoading(true);
 
-      fetch("https://dulces-petalos.herokuapp.com/api/product")
+      fetch(process.env.REACT_APP_API_URL)
         .then(response => response.json())
         .then(products => {
           setProducts(products)
