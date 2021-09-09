@@ -7,3 +7,9 @@
   background-color: #ccc;
   height: 100px;
 }
+
+.product_list_container {
+  min-height: 100vh;
+  background-color: greenyellow;
+  margin-top: 20px;
+}
