@@ -4,30 +4,29 @@ import ProductListSearch from './ProductListSearch';
 
 const ProductListContainer = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [searchTxt, setSearchTxt] = useState("");
 
   useEffect(
     () => {
-      setLoading(true);
-
-      fetch(process.env.REACT_APP_API_URL)
+      fetch(`${process.env.REACT_APP_API_URL}/product`)
         .then(response => response.json())
         .then(products => {
           setProducts(products)
-          setLoading(false);
         });
     },
     [],
   );
 
+  const filtered = products.filter(p => new RegExp(searchTxt).test(p.name.toLowerCase()) || new RegExp(searchTxt).test(p.binomialName.toLowerCase()))
+
   return (
     <div className="product_list_container">
       <div className="p-3 d-flex flex-row justify-content-between">
         <h2>Products</h2>
-        <ProductListSearch products={products} />
+        <ProductListSearch setSearchTxt={setSearchTxt} />
       </div>
 
-      <ProductList products={products} />
+      <ProductList products={filtered} />
     </div>
   );
 }
