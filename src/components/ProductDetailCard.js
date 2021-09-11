@@ -5,15 +5,15 @@ const ProductDetailCard = (props = {}) => {
   const { product } = props;
 
   return (
-    <div style={{ backgroundColor: '#C4C4C4' }} className="d-flex flex-row justify-content-between p-4">
-      <img src={product.imgUrl} alt={product.name} style={{ width: '400px', height: '400px' }} />
-      <div>
-        <p>{product.name}</p>
-        <p>{product.binomialName}</p>
+    <div style={{ backgroundColor: 'rgba(0,0,0,0.1)' }} className="d-flex flex-row p-4">
+      <img src={product.imgUrl} alt={product.name} style={{ width: '450px', height: '400px' }} />
+      <div style={{ marginLeft: '100px', textAlign: 'left' }}>
+        <h1>{product.name}</h1>
+        <h4>{product.binomialName}</h4>
         <p>{product.price}€</p>
-        <p>wateringsPerWeek: {product.wateringsPerWeek}</p>
-        <p>fertilizerType: {product.fertilizerType}</p>
-        <p>heightInCm: {product.heightInCm}</p>
+        <p>Riegos por semana: {product.wateringsPerWeek}</p>
+        <p>Fertilizante recomendado: {product.fertilizerType === 'nitrogen' ? 'nitrogenado' : 'fosforado'}</p>
+        <p>Altura: {product.heightInCm}cm</p>
       </div>
     </div>
   );

@@ -1,14 +1,5 @@
 .App {
   text-align: center;
   margin: 20px;
-}
-
-.header {
-  background-color: #ccc;
-  height: 100px;
-}
-
-.product_list_container {
-  min-height: 100vh;
-  margin-top: 20px;
+  height: 100%;
 }

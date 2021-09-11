@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Redirect } from 'react-router-dom';
 
 import Header from '../components/Header';
 import ProductDetailCard from '../components/ProductDetailCard';
@@ -11,7 +11,13 @@ const Product = (props = {}) => {
   useEffect(
     () => {
       fetch(`${process.env.REACT_APP_API_URL}/product/${id}`)
-        .then(response => response.json())
+        .then(response => {
+          if (response.status !== 200) {
+            return null;
+          }
+
+          return response.json();
+        })
         .then(product => {
           setProduct(product)
         });
@@ -19,16 +25,23 @@ const Product = (props = {}) => {
     [id],
   );
 
+  // product not found
+  if (!product) {
+    return <Redirect to="/" />
+  }
+
   return (
-    <div className="d-flex flex-column justify-content-between">
+    <div>
       <Header />
-      <div className="p-3 d-flex flex-row justify-content-between">
-        <h2>Product Detail</h2>
-        <Link to="/">
-          <button type="button" className="btn btn-dark">Go Back</button>
-        </Link>
+      <div style={{ maxWidth: '60%', margin: 'auto' }}>
+        <div className="p-3 d-flex flex-row justify-content-between">
+          <h2>Product Detail</h2>
+          <Link to="/">
+            <button type="button" className="btn btn-dark">Go Back</button>
+          </Link>
+        </div>
+        <ProductDetailCard product={product} />
       </div>
-      <ProductDetailCard product={product} />
     </div>
   );
 }
