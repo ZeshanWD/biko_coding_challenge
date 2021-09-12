@@ -21,3 +21,10 @@ Create enviroment variables file(.env) with the following content:
 REACT_APP_API_URL=https://dulces-petalos.herokuapp.com/api
 ```
 
+Start Application
+
+```
+$ yarn start || npm run start
+```
+
+
