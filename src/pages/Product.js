@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, Redirect } from 'react-router-dom';
 
 import Header from '../components/Header';
-import ProductDetailCard from '../components/ProductDetailCard';
+import ProductDetailCard from '../components/Product/ProductDetailCard';
 
-const Product = (props = {}) => {
+const Product = () => {
   const [product, setProduct] = useState([]);
 
+  // fetch product
   const { id } = useParams()
   useEffect(
     () => {
@@ -25,15 +26,15 @@ const Product = (props = {}) => {
     [id],
   );
 
-  // product not found
+  // redirect if product not found
   if (!product) {
     return <Redirect to="/" />
   }
 
   return (
-    <div>
+    <React.Fragment>
       <Header />
-      <div style={{ maxWidth: '60%', margin: 'auto' }}>
+      <div className="product_detail_container">
         <div className="p-3 d-flex flex-row justify-content-between">
           <h2>Product Detail</h2>
           <Link to="/">
@@ -42,7 +43,7 @@ const Product = (props = {}) => {
         </div>
         <ProductDetailCard product={product} />
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 

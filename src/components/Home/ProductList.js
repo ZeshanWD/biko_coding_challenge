@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 function ProductList(props) {
   return (
-    <div className="d-flex flex-row align-items-center justify-content-between flex-wrap p-3">
+    <div className="product_list">
       {
         props.products.map((product, i) => {
           return (
